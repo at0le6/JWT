@@ -14,6 +14,8 @@ var _products = _interopRequireDefault(require("./routes/products.routes"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var app = (0, _express["default"])();
+app.use((0, _morgan["default"])('dev'));
+app.use(_express["default"].json());
 app.use('/products', _products["default"]);
 app.get('/', function (req, res) {
   res.json('welcome');
