@@ -11,12 +11,15 @@ var _morgan = _interopRequireDefault(require("morgan"));
 
 var _products = _interopRequireDefault(require("./routes/products.routes"));
 
+var _auth = _interopRequireDefault(require("./routes/auth.routes"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var app = (0, _express["default"])();
 app.use((0, _morgan["default"])('dev'));
 app.use(_express["default"].json());
-app.use('/products', _products["default"]);
+app.use('/api/products', _products["default"]);
+app.use('/api/auth', _auth["default"]);
 app.get('/', function (req, res) {
   res.json('welcome');
 });

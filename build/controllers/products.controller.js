@@ -39,7 +39,7 @@ var getProducts = /*#__PURE__*/function () {
 
 var createProducts = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(req, res) {
-    var _req$body, name, category, price, imgURL, newProduct;
+    var _req$body, name, category, price, imgURL, product;
 
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
@@ -55,9 +55,9 @@ var createProducts = /*#__PURE__*/function () {
             });
 
           case 3:
-            newProduct = _context2.sent;
+            product = _context2.sent;
             res.status(201).json({
-              newProduct: newProduct
+              product: product
             });
 
           case 5:
@@ -73,17 +73,129 @@ var createProducts = /*#__PURE__*/function () {
   };
 }();
 
-var getProductById = function getProductById(req, res) {
-  res.json(req.params.prodectId);
-};
+var getProductById = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(req, res) {
+    var ID, product;
+    return regeneratorRuntime.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            ID = req.params.prodectId;
+            _context3.next = 3;
+            return _Product["default"].findById(ID);
 
-var updateProductById = function updateProductById(req, res) {
-  res.json(req.params.prodectId);
-};
+          case 3:
+            product = _context3.sent;
 
-var deleteProductById = function deleteProductById(req, res) {
-  res.json(req.params.prodectId);
-};
+            if (product) {
+              _context3.next = 6;
+              break;
+            }
+
+            return _context3.abrupt("return", res.status(404).json("Id not found"));
+
+          case 6:
+            res.status(200).json({
+              product: product
+            });
+
+          case 7:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3);
+  }));
+
+  return function getProductById(_x5, _x6) {
+    return _ref3.apply(this, arguments);
+  };
+}();
+
+var updateProductById = /*#__PURE__*/function () {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(req, res) {
+    var ID, product;
+    return regeneratorRuntime.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            ID = req.params.prodectId;
+            _context4.next = 3;
+            return _Product["default"].findByIdAndUpdate(ID, req.body, {
+              "new": true,
+              runValidators: true
+            });
+
+          case 3:
+            product = _context4.sent;
+
+            if (product) {
+              _context4.next = 6;
+              break;
+            }
+
+            return _context4.abrupt("return", res.status(404).json({
+              msg: "Id ".concat(ID, " not found")
+            }));
+
+          case 6:
+            res.status(200).json({
+              product: product
+            });
+
+          case 7:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4);
+  }));
+
+  return function updateProductById(_x7, _x8) {
+    return _ref4.apply(this, arguments);
+  };
+}();
+
+var deleteProductById = /*#__PURE__*/function () {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(req, res) {
+    var ID, product;
+    return regeneratorRuntime.wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            ID = req.params.prodectId;
+            _context5.next = 3;
+            return _Product["default"].findByIdAndDelete(ID);
+
+          case 3:
+            product = _context5.sent;
+
+            if (product) {
+              _context5.next = 6;
+              break;
+            }
+
+            return _context5.abrupt("return", res.status(404).json({
+              msg: "Id ".concat(ID, " not found")
+            }));
+
+          case 6:
+            res.status(200).json({
+              msg: "Item with ID".concat(ID, " deleted")
+            });
+
+          case 7:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5);
+  }));
+
+  return function deleteProductById(_x9, _x10) {
+    return _ref5.apply(this, arguments);
+  };
+}();
 
 module.exports = {
   createProducts: createProducts,
