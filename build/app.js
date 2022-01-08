@@ -1,5 +1,7 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -18,8 +20,6 @@ var _user = _interopRequireDefault(require("./routes/user.routes"));
 var _errorHandler = _interopRequireDefault(require("./middleware/error-handler"));
 
 var _initialSetUp = require("./libs/initialSetUp");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var app = (0, _express["default"])(); //creation of baisc roles models
 
