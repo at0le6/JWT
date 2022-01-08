@@ -15,22 +15,26 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var UserSchema = new _mongoose.Schema({
   username: {
     type: String,
-    unique: true
+    unique: true,
+    required: true
   },
   email: {
     type: String,
-    unique: true
-  },
-  password: {
-    type: String,
+    unique: true,
     required: true
   },
+  password: _defineProperty({
+    type: String,
+    required: true
+  }, "required", true),
   roles: [{
-    ref: "Role",
-    type: _mongoose.Schema.Types.ObjectId
+    type: _mongoose.Schema.Types.ObjectId,
+    ref: "Role"
   }]
 }, {
   timestamps: true,
